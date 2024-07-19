@@ -1,0 +1,26 @@
+[project]
+name = "mk"
+version = "0.1.0"
+requires-python = ">=3.10"
+
+dependencies = [
+    #"tomlkit"
+]
+
+[project.optional-dependencies]
+test = [
+    "coverage",
+    "flake8",
+    "mypy",
+    "pytest"
+]
+
+[tool.coverage.run]
+source = [ "mk" ]
+
+[tool.mypy]
+packages = [ "mk", "test" ]
+strict = true
+
+[tool.pytest.ini_options]
+testpaths = [ "test" ]
