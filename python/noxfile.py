@@ -3,7 +3,7 @@ import nox
 
 @nox.session()
 def lint(session):
-    session.run('flake8', 'mk', 'test', external=True)
+    session.run('flake8', 'mktech', 'test', external=True)
 
 
 @nox.session()

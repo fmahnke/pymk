@@ -12,7 +12,7 @@
       pythonPkgs = pkgs.python3.pkgs;
     in {
       packages.x86_64-linux.default = pythonPkgs.buildPythonPackage {
-        pname = "pymk";
+        pname = "mktech";
         version = "0.1.0";
         pyproject = true;
 
