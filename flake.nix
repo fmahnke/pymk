@@ -10,6 +10,9 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       pythonPkgs = pkgs.python3.pkgs;
+
+      buildInputs = with pythonPkgs; [ tomlkit setuptools ];
+
     in {
       packages.x86_64-linux.default = pythonPkgs.buildPythonPackage {
         pname = "mktech";
@@ -18,7 +21,7 @@
 
         src = ./python;
 
-        buildInputs = with pythonPkgs; [ tomlkit setuptools ];
+        inherit buildInputs;
 
         nativeCheckInputs =
           [ inputs.dev.devShells.${system}.python.nativeBuildInputs ];
