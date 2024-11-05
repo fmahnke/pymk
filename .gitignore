@@ -5,7 +5,7 @@ __pycache__
 # editable install state
 /python/build
 
-/python/mk.egg-info/
+/python/mktech.egg-info/
 /result
 .coverage
 .ropeproject
