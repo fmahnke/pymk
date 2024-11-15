@@ -9,3 +9,7 @@ __pycache__
 /result
 .coverage
 .ropeproject
+
+# pdm
+
+.pdm-python
