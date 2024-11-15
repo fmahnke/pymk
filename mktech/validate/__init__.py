@@ -1,6 +1,6 @@
 from typing import Any, Optional, Type, TypeGuard, TypeVar
 
-from .message import invalid_type
+from mktech.message import invalid_type
 
 _T = TypeVar("_T")
 
