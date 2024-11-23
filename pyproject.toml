@@ -15,6 +15,10 @@ test = [
     "pytest"
 ]
 
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
 [tool.coverage.run]
 source = [ "mktech" ]
 
@@ -26,3 +30,4 @@ strict = true
 testpaths = [ "test" ]
 
 [tool.pdm]
+distribution = true
