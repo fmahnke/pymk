@@ -7,14 +7,6 @@ dependencies = [
     "tomlkit>=0.13.2",
 ]
 
-[project.optional-dependencies]
-test = [
-    "coverage",
-    "flake8",
-    "mypy",
-    "pytest"
-]
-
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
@@ -31,3 +23,18 @@ testpaths = [ "test" ]
 
 [tool.pdm]
 distribution = true
+
+[dependency-groups]
+test = [
+    "coverage>=7.6.4",
+    "flake8>=7.1.1",
+    "mypy>=1.13.0",
+    "pytest>=8.3.3",
+    "nox>=2024.10.9",
+]
+dev = [
+    "python-lsp-server[all]>=1.12.0",
+    "ipdb>=0.13.13",
+    "pdoc3>=0.11.1",
+    "pylsp-mypy>=0.6.9",
+]
