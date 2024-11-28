@@ -5,6 +5,8 @@ from tomlkit import TOMLDocument
 from tomlkit.container import Container
 from tomlkit.items import Item
 
+from mktech.path import PathInput
+
 
 class Config:
     """ Build configuration file. """
@@ -13,7 +15,7 @@ class Config:
         self.config = TOMLDocument()
 
     @classmethod
-    def from_file(cls, path: str) -> 'Config':
+    def from_file(cls, path: PathInput) -> 'Config':
         """ Parse the configuration from an existing file. """
 
         ctx = cls()
@@ -21,21 +23,22 @@ class Config:
 
         return ctx
 
-    def toml(self) -> TOMLDocument:
-        return self.config
+    def asdict(self) -> dict[str, Any]:
+        return dict(self.config)
+
+    def toml(self) -> str:
+        return toml.dumps(self.config)
 
     def write(self, path: str, mode: str = 'w') -> None:
         """ Write the configuration to a file. """
-
-        config_toml = self.toml()
 
         with open(path, mode) as fi:
             if mode == 'a':
                 fi.write('\n')
 
-            fi.write(toml.dumps(config_toml))
+            fi.write(toml.dumps(self.config))
 
-    def _init_from_file(self, path: str) -> None:
+    def _init_from_file(self, path: PathInput) -> None:
         with open(path, 'r') as fi:
             self.config = toml.parse(fi.read())
 
