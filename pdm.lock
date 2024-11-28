@@ -5,7 +5,7 @@
 groups = ["default", "dev", "test"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:9917efb8526f662bd5c0700b3e606a9732e80cdfd56eae5c3e9e1233b7228ac1"
+content_hash = "sha256:5221c8a5025faa4d4ac85e7c205b201892f0a44e4d525d80a916aee794d348bb"
 
 [[metadata.targets]]
 requires_python = ">=3.10"
@@ -823,6 +823,20 @@ dependencies = [
 files = [
     {file = "pytoolconfig-1.3.1-py3-none-any.whl", hash = "sha256:5d8cea8ae1996938ec3eaf44567bbc5ef1bc900742190c439a44a704d6e1b62b"},
     {file = "pytoolconfig-1.3.1.tar.gz", hash = "sha256:51e6bd1a6f108238ae6aab6a65e5eed5e75d456be1c2bf29b04e5c1e7d7adbae"},
+]
+
+[[package]]
+name = "result"
+version = "0.17.0"
+requires_python = ">=3.8"
+summary = "A Rust-like result type for Python"
+groups = ["default"]
+dependencies = [
+    "typing-extensions; python_version < \"3.10\"",
+]
+files = [
+    {file = "result-0.17.0-py3-none-any.whl", hash = "sha256:49fd668b4951ad15800b8ccefd98b6b94effc789607e19c65064b775570933e8"},
+    {file = "result-0.17.0.tar.gz", hash = "sha256:b73da420c0cb1a3bf741dbd41ff96dedafaad6a1b3ef437a9e33e380bb0d91cf"},
 ]
 
 [[package]]

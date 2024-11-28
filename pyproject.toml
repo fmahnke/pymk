@@ -5,6 +5,7 @@ requires-python = ">=3.10"
 
 dependencies = [
     "tomlkit>=0.13.2",
+    "result>=0.17.0",
 ]
 
 [build-system]
