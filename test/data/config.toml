@@ -1,0 +1,4 @@
+log_level = "DEBUG"
+
+[ssh]
+use_ssh = true
