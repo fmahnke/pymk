@@ -6,6 +6,7 @@ requires-python = ">=3.10"
 dependencies = [
     "tomlkit>=0.13.2",
     "result>=0.17.0",
+    "jsonschema>=4.23.0",
 ]
 
 [build-system]
@@ -38,4 +39,5 @@ dev = [
     "ipdb>=0.13.13",
     "pdoc3>=0.11.1",
     "pylsp-mypy>=0.6.9",
+    "types-jsonschema>=4.23.0.20240813",
 ]
