@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/product.schema.json",
+  "title": "Product",
+  "description": "Config schema",
+  "type": "object",
+  "properties": {
+    "log_level": {
+      "description": "Log level",
+      "type": "string",
+      "default": "WARNING"
+    },
+    "modules": {
+      "type": "array",
+      "default": []
+    },
+    "zsh": {
+      "type": "object",
+      "properties": {
+        "fzf": {
+          "type": "boolean",
+          "default": "false"
+        },
+        "lsd": {
+          "type": "boolean",
+          "default": "false"
+        }
+      }
+    },
+    "ssh": {
+      "type": "object",
+      "properties": {
+        "use_ssh": {
+          "type": "boolean"
+        },
+        "port": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
