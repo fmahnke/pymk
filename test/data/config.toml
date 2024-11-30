@@ -1,4 +1,8 @@
-log_level = "DEBUG"
+log_level = "WARNING"
+
+[zsh]
+fzf = true
 
 [ssh]
-use_ssh = true
+use_ssh = false
+port = 22

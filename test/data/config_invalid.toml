@@ -1,0 +1,5 @@
+log_level = 0
+
+[ssh]
+use_ssh = false
+port = 22
