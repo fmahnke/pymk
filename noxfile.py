@@ -8,7 +8,7 @@ def typing(session):
 
 @nox.session(reuse_venv=True)
 def lint(session):
-    session.run('flake8', 'mktech', 'test', external=True)
+    session.run('flake8', 'mktech', 'tests', external=True)
 
 
 @nox.session(reuse_venv=True)

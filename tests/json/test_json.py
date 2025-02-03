@@ -1,6 +1,6 @@
 import mktech.json as json
 
-from test.util import resource_path
+from tests.util import resource_path
 
 
 def test_from_schema() -> None:

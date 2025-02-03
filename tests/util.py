@@ -3,4 +3,4 @@ import mktech.resources
 
 
 def resource_path(name: str) -> Path:
-    return mktech.resources.resource_path('test.data', name).unwrap()
+    return mktech.resources.resource_path('tests.data', name).unwrap()

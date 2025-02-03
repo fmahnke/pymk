@@ -5,7 +5,7 @@ from result import is_err, is_ok
 
 class TestResourcePath:
     def test_ok(self) -> None:
-        result = resource_path('test.data', 'config.toml')
+        result = resource_path('tests.data', 'config.toml')
 
         assert is_ok(result)
 

@@ -71,4 +71,4 @@ parallel = false
 source = [ "mktech" ]
 
 [tool.pytest.ini_options]
-testpaths = [ "test" ]
+testpaths = [ "tests" ]

@@ -2,7 +2,7 @@ from mktech.config import Config, ValidationError
 
 import pytest
 
-from test.util import resource_path
+from tests.util import resource_path
 
 
 class TestConfig:
