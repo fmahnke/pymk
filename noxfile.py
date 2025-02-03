@@ -1,17 +1,17 @@
 import nox
 
 
-@nox.session()
-def lint(session):
-    session.run('flake8', 'mktech', 'test', external=True)
-
-
-@nox.session()
+@nox.session(reuse_venv=True)
 def typing(session):
     session.run('mypy', external=True)
 
 
-@nox.session()
+@nox.session(reuse_venv=True)
+def lint(session):
+    session.run('flake8', 'mktech', 'test', external=True)
+
+
+@nox.session(reuse_venv=True)
 def tests(session):
-    session.run('coverage', 'run', '--branch', '-m', 'pytest', external=True)
+    session.run('coverage', 'run', '-m', 'pytest', external=True)
     session.run('coverage', 'report', external=True)

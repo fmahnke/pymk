@@ -1,43 +1,73 @@
-[project]
-name = "mktech"
-version = "0.5.0"
-requires-python = ">=3.10"
-
-dependencies = [
-    "tomlkit>=0.13.2",
-    "result>=0.17.0",
-    "jsonschema>=4.23.0",
-]
-
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
-[tool.coverage.run]
-source = [ "mktech" ]
+[project]
+name = "mktech"
+dynamic = ["version"]
+description = "mktech standard library"
+authors = [{name = "Fritz Mahnke", email = "fritz@mahnke.tech"}]
+license = {text = "GPL-3.0"}
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = []
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Documentation",
+    "Topic :: Software Development",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
+dependencies = [
+    "tomlkit>=0.13.2",
+    "result>=0.17.0",
+    "jsonschema>=4.23.0"
+]
 
-[tool.mypy]
-packages = [ "mktech", "test" ]
-strict = true
-
-[tool.pytest.ini_options]
-testpaths = [ "test" ]
+[project.urls]
+Homepage = "https://fmahnke.github.io/mktech"
+Documentation = "https://fmahnke.github.io/mktech"
+Changelog = "https://fmahnke.github.io/mktech/changelog"
+Repository = "https://github.com/fmahnke/mktech"
+Issues = "https://github.com/fmahnke/mktech/issues"
+Discussions = "https://github.com/fmahnke/mktech/discussions"
 
 [tool.pdm]
 distribution = true
 
+[tool.pdm.version]
+source = "scm"
+fallback_version = "0.0.0"
+
 [dependency-groups]
-test = [
-    "coverage>=7.6.4",
-    "flake8>=7.1.1",
-    "mypy>=1.13.0",
-    "pytest>=8.3.3",
-    "nox>=2024.10.9",
-]
 dev = [
     "python-lsp-server[all]>=1.12.0",
-    "ipdb>=0.13.13",
-    "pdoc3>=0.11.1",
     "pylsp-mypy>=0.6.9",
     "types-jsonschema>=4.23.0.20240813",
+    "ipdb>=0.13.13",
+    "pdoc3>=0.11.3",
 ]
+test = [
+    "pytest>=8.3.3",
+    "flake8>=7.1.1",
+    "coverage>=7.6.8",
+    "mypy>=1.13.0",
+    "nox>=2024.10.9",
+]
+
+[tool.coverage.run]
+branch = true
+parallel = true
+source = [ "mktech" ]
+
+[tool.pytest.ini_options]
+testpaths = [ "test" ]

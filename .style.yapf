@@ -15,7 +15,18 @@ allow_multiline_dictionary_keys=False
 allow_multiline_lambdas=False
 
 # Allow splitting before a default / named assignment in an argument list.
-allow_split_before_default_or_named_assigns=True
+#
+#   self._ninja_build(
+#       build_ninja_path=f"{self._dir['build']['lib']}/Keypad/build.ninja"
+#   )
+#
+# will be formatted as:
+#
+#   self._ninja_build(
+#       build_ninja_path=
+#       f"{self._dir['build']['lib']}/Keypad/build.ninja"
+#   )
+allow_split_before_default_or_named_assigns=False
 
 # Allow splits before the dictionary value.
 allow_split_before_dict_value=False
@@ -61,7 +72,7 @@ blank_line_before_module_docstring=False
 #                      # <------ this blank line
 #     def method():
 #       pass
-blank_line_before_nested_class_or_def=True
+blank_line_before_nested_class_or_def=False
 
 # Do not split consecutive brackets. Only relevant when
 # dedent_closing_brackets is set. For example:
@@ -294,11 +305,30 @@ space_between_ending_comma_and_closing_bracket=True
 space_inside_brackets=False
 
 # Split before arguments.
+# Only when they don't fit on a single line.
+#
+#    def _add_force_scheduler(self, name, builder_name, branches, default_branch):
+#
+#  or
+#
+#    def _add_force_scheduler(
+#        self, name, builder_name, branches, default_branch
+#    ):
+#
+#  will be formatted as:
+#
+#    def _add_force_scheduler(
+#        self,
+#        name,
+#        builder_name,
+#        branches,
+#        default_branch
+#    ):
 split_all_comma_separated_values=False
 
 # Split before arguments, but do not split all subexpressions recursively
 # (unless needed).
-split_all_top_level_comma_separated_values=False
+split_all_top_level_comma_separated_values=True
 
 # Split before arguments if the argument list is terminated by a
 # comma.
@@ -337,7 +367,7 @@ split_before_dot=False
 
 # Split after the opening paren which surrounds an expression if it doesn't
 # fit on a single line.
-split_before_expression_after_opening_paren=False
+split_before_expression_after_opening_paren=True
 
 # If an argument / parameter list is going to be split, then split before
 # the first argument.
@@ -364,7 +394,7 @@ split_before_named_assigns=True
 #       a_long_var + 100
 #       for a_long_var in xrange(1000)
 #       if a_long_var % 10]
-split_complex_comprehension=False
+split_complex_comprehension=True
 
 # The penalty for splitting right after the opening bracket.
 split_penalty_after_opening_bracket=300
