@@ -1,12 +1,20 @@
 from logging import (
-    debug, info, warning, error, DEBUG, INFO, WARNING, ERROR, LogRecord
+    DEBUG, INFO, WARNING, ERROR, debug, info, warning, error, LogRecord
 )
 import logging
 
 from mktech.os import environ
 
 __all__ = [
-    'DEBUG', 'INFO', 'WARNING', 'ERROR', 'debug', 'info', 'init', 'warning'
+    'DEBUG',
+    'INFO',
+    'WARNING',
+    'ERROR',
+    'debug',
+    'info',
+    'warning',
+    'error',
+    'init'
 ]
 
 
