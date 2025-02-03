@@ -8,9 +8,10 @@ def test_merge() -> None:
 
     document.update(
         {
-            'log_level': 'WARNING', 'modules': [],
-            'zsh': {'fzf': False,
-                    'lsd': False}, 'ssh': {'use_ssh': False, 'port': 22}
+            'log_level': 'WARNING',
+            'modules': [],
+            'zsh': {'fzf': False, 'lsd': False},
+            'ssh': {'use_ssh': False, 'port': 22}
         }
     )
 
@@ -20,7 +21,9 @@ def test_merge() -> None:
     )
 
     assert dict(new_doc) == {
-        'log_level': 'INFO', 'new_key': 'new_val', 'modules': [],
-        'zsh': {'fzf': True,
-                'lsd': False}, 'ssh': {'use_ssh': False, 'port': 22}
+        'log_level': 'INFO',
+        'new_key': 'new_val',
+        'modules': [],
+        'zsh': {'fzf': True, 'lsd': False},
+        'ssh': {'use_ssh': False, 'port': 22}
     }

@@ -18,7 +18,6 @@ ValidationError: TypeAlias = jsonschema.exceptions.ValidationError
 
 class Config:
     """ Build configuration file. """
-
     def __init__(self, schema: Optional[PathInput] = None) -> None:
         self.config = TOMLDocument()
 

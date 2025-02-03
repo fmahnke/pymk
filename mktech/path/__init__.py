@@ -7,7 +7,4 @@ PathInput: TypeAlias = Path | PathLike[str] | str
 PathInputs: TypeAlias = PathInput | MutableSequence[PathInput]
 Paths: TypeAlias = Path | MutableSequence[Path]
 
-__all__ = [
-    'Path',
-    'PathInput'
-]
+__all__ = ['Path', 'PathInput']

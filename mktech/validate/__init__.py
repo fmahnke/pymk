@@ -20,9 +20,7 @@ def check_type(
 
 
 def ensure_type(
-    obj: Any,
-    expected_type: Type[_T],
-    message: Optional[str] = None
+    obj: Any, expected_type: Type[_T], message: Optional[str] = None
 ) -> _T:
     if not isinstance(obj, expected_type):
         if message is None:

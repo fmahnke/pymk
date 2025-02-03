@@ -1,11 +1,7 @@
 import os
 
 
-def environ(
-    key: str,
-    default: str = '',
-    required: bool = True
-) -> str:
+def environ(key: str, default: str = '', required: bool = True) -> str:
     """ Return the value of an environment variable.
 
     If key names a variable in the environment, return its value. If the

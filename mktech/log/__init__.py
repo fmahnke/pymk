@@ -1,18 +1,12 @@
-from logging import (debug, info, warning, error, DEBUG, INFO,  # noqa: F401
-    WARNING, ERROR, LogRecord)
+from logging import (
+    debug, info, warning, error, DEBUG, INFO, WARNING, ERROR, LogRecord
+)
 import logging
 
 from mktech.os import environ
 
 __all__ = [
-    'DEBUG',
-    'INFO',
-    'WARNING',
-    'ERROR',
-    'debug',
-    'info',
-    'init',
-    'warning'
+    'DEBUG', 'INFO', 'WARNING', 'ERROR', 'debug', 'info', 'init', 'warning'
 ]
 
 
@@ -42,7 +36,6 @@ _detail_str = [
     '%(levelname)s:%(module)s::%(funcName)s: %(message)s',
     '%(levelname)s:%(name)s:%(module)s::%(funcName)s: %(message)s'
 ]
-
 
 _detail_formatter = [
     logging.Formatter(_detail_str[0]),

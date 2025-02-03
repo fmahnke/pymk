@@ -13,8 +13,7 @@ def merge(target: TOMLDocument, source: dict[str, Any]) -> TOMLDocument:
 
 
 def _merge(
-    target: TOMLDocument | Table,
-    source: dict[str, Any]
+    target: TOMLDocument | Table, source: dict[str, Any]
 ) -> TOMLDocument | Table:
     for key, value in source.items():
         if key not in target:

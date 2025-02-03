@@ -6,7 +6,6 @@ from test.util import resource_path
 
 
 class TestConfig:
-
     def test_missing_key(self) -> None:
         config = Config.from_file(resource_path('config.toml'))
 
@@ -26,7 +25,8 @@ class TestConfig:
         config = Config.from_file(resource_path('config.toml'))
 
         assert config.asdict() == {
-            'log_level': 'WARNING', 'zsh': {'fzf': True},
+            'log_level': 'WARNING',
+            'zsh': {'fzf': True},
             'ssh': {'use_ssh': False, 'port': 22}
         }
 
@@ -40,7 +40,8 @@ class TestConfig:
         config = Config(schema=resource_path('config_schema.json'))
 
         assert config.asdict() == {
-            'log_level': 'WARNING', 'modules': [],
+            'log_level': 'WARNING',
+            'modules': [],
             'zsh': {'fzf': False, 'lsd': False}
         }
 
@@ -50,7 +51,8 @@ class TestConfig:
         config.load_from_file(resource_path('config.toml'))
 
         assert config.asdict() == {
-            'log_level': 'WARNING', 'modules': [],
-            'zsh': {'fzf': True,
-                    'lsd': False}, 'ssh': {'use_ssh': False, 'port': 22}
+            'log_level': 'WARNING',
+            'modules': [],
+            'zsh': {'fzf': True, 'lsd': False},
+            'ssh': {'use_ssh': False, 'port': 22}
         }
