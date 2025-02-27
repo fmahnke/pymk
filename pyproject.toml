@@ -72,3 +72,8 @@ source = [ "mktech" ]
 
 [tool.pytest.ini_options]
 testpaths = [ "tests" ]
+
+[tool.pylsp-mypy]
+enabled = true
+follow-imports = "normal"
+report_progress = true
