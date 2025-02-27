@@ -14,4 +14,5 @@ def lint(session):
 @nox.session(reuse_venv=True)
 def tests(session):
     session.run('coverage', 'run', '-m', 'pytest', external=True)
+    session.run('coverage', 'combine', '--append', external=True)
     session.run('coverage', 'report', external=True)
