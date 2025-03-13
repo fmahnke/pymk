@@ -5,7 +5,7 @@
 groups = ["default", "dev", "test"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:e9607a6e270f076728963c181ad81bcda75f6009197c5c911bebe081ee908505"
+content_hash = "sha256:19935e8971c915747e8315c5a0214aea493dcf0179085cfcfee59427d878d67f"
 
 [[metadata.targets]]
 requires_python = ">=3.10"
@@ -604,8 +604,7 @@ files = [
 name = "pexpect"
 version = "4.9.0"
 summary = "Pexpect allows easy control of interactive console applications."
-groups = ["dev"]
-marker = "(sys_platform != \"win32\" and sys_platform != \"emscripten\") and python_version > \"3.6\""
+groups = ["default", "dev"]
 dependencies = [
     "ptyprocess>=0.5",
 ]
@@ -655,8 +654,7 @@ files = [
 name = "ptyprocess"
 version = "0.7.0"
 summary = "Run a subprocess in a pseudo terminal"
-groups = ["dev"]
-marker = "(sys_platform != \"win32\" and sys_platform != \"emscripten\") and python_version > \"3.6\""
+groups = ["default", "dev"]
 files = [
     {file = "ptyprocess-0.7.0-py2.py3-none-any.whl", hash = "sha256:4b41f3967fce3af57cc7e94b888626c18bf37a083e3651ca8feeb66d492fef35"},
     {file = "ptyprocess-0.7.0.tar.gz", hash = "sha256:5c5d0a3b48ceee0b48485e0c26037c0acd7d29765ca3fbb5cb3831d347423220"},
@@ -1119,6 +1117,17 @@ dependencies = [
 files = [
     {file = "types_jsonschema-4.23.0.20241208-py3-none-any.whl", hash = "sha256:87934bd9231c99d8eff94cacfc06ba668f7973577a9bd9e1f9de957c5737313e"},
     {file = "types_jsonschema-4.23.0.20241208.tar.gz", hash = "sha256:e8b15ad01f290ecf6aea53f93fbdf7d4730e4600313e89e8a7f95622f7e87b7c"},
+]
+
+[[package]]
+name = "types-pexpect"
+version = "4.9.0.20241208"
+requires_python = ">=3.8"
+summary = "Typing stubs for pexpect"
+groups = ["dev"]
+files = [
+    {file = "types_pexpect-4.9.0.20241208-py3-none-any.whl", hash = "sha256:1928f478528454f0fea3495c16cf1ee2e67fca5c9fe97d60b868ac48c1fd5633"},
+    {file = "types_pexpect-4.9.0.20241208.tar.gz", hash = "sha256:bbca0d0819947a719989a5cfe83641d9212bef893e2f0a7a01e47926bc82401d"},
 ]
 
 [[package]]
