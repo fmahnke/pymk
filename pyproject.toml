@@ -76,6 +76,9 @@ report_progress = true
 [tool.pdm]
 distribution = true
 
+[tool.pdm.build]
+includes = ["src/"]
+
 [tool.pdm.version]
 source = "scm"
 fallback_version = "0.0.0"

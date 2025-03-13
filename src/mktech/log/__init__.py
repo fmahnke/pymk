@@ -1,7 +1,15 @@
-from logging import (
-    DEBUG, INFO, WARNING, ERROR, debug, info, warning, error, LogRecord
-)
 import logging
+from logging import (
+    DEBUG,
+    ERROR,
+    INFO,
+    WARNING,
+    LogRecord,
+    debug,
+    error,
+    info,
+    warning,
+)
 
 from mktech.os import environ
 
