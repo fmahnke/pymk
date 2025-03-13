@@ -4,6 +4,9 @@ import os
 def environ(key: str, default: str = '', required: bool = True) -> str:
     """ Return the value of an environment variable.
 
+    TODO: Below is not the current behavior, but is more along the lines of
+    what's desired. Review current usages and update this function.
+
     If key names a variable in the environment, return its value. If the
     variable isn't set and default is not None, return default. If default is
     None, then None is returned if required is False, and an Exception is

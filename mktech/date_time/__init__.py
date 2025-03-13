@@ -51,6 +51,8 @@ def parse_duration(
 
         second, microsecond = _seconds_microseconds(second_str)
 
+        # TODO ValueError when second not 0..59
+
         duration_datetime = datetime(
             1900,
             1,
