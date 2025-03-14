@@ -24,7 +24,9 @@ class Subprocess:
     def __init__(self, command: str, *args: Any, **kwargs: Any) -> None:
         self.stdout_str: str | bytes
 
-        self._pexpect_spawn = pexpect.spawn(command, *args, **kwargs)
+        self._pexpect_spawn = pexpect.spawn(  # type: ignore
+            command, timeout=None, *args, **kwargs
+        )
 
         log.info(f'run: {command}')
 
