@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Any
 
 import click
 
@@ -12,13 +12,11 @@ top_command_args = {
 }
 
 
-def top() -> Callable:
-    def decorator(func, *args, **kwargs):
-        print(f'top func is {func}')
-
-        @click.command(**top_command_args)
+def top() -> Any:
+    def decorator(func: Any, *args: Any, **kwargs: Any) -> Any:
+        @click.command(**top_command_args)  # type: ignore[call-overload,misc]
         @click.option('-l', '--log-level', default='warning')
-        def wrapper(log_level: str | None = None, *args, **kwargs):
+        def wrapper(log_level: str, *args: Any, **kwargs: Any) -> Any:
             log.init(log_level)
 
             func(*args, **kwargs)
