@@ -115,17 +115,30 @@ set_formatter(_formatter)
 set_detail(0)
 
 
-def init(level: str) -> None:
+def init(level: int | str) -> None:
     global _formatter
     global _handler
     global _root_logger
 
     env_level = environ('MK_LOG_LEVEL', required=False)
 
-    if env_level == '':
-        set_level(level)
-    else:
-        set_level(env_level)
+    if isinstance(level, str):
+        if env_level != '':
+            level = env_level
+
+        level = level.upper()
+
+        match level:
+            case 'E':
+                level = 'ERROR'
+            case 'W':
+                level = 'WARNING'
+            case 'I':
+                level = 'INFO'
+            case 'D':
+                level = 'DEBUG'
+
+    set_level(level)
 
 
 init('WARNING')
