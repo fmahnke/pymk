@@ -1,0 +1,31 @@
+log_level = "DEBUG"
+
+[scon]
+version = "0.2.0"
+
+[arduino]
+core = "arduino:renesas_uno"
+version = "1.2.0"
+board = "minima"
+port = "/dev/ttyACM0"
+
+[keypad]
+row_pins = [3, 2, 14, 15, 16]
+column_pins = [10, 19, 18, 17]
+driver = "digital"
+
+[motor]
+interface = "driver"
+steps_per_revolution = 1024
+pins = [9, 8, 0, 0]
+
+[display]
+controller = "PCD8544"  # "PCD8544" | "SSD1306"
+buffer_mode = "1Page"  # "1Page" | "2Page" | "Full"
+clock = 13
+data = 11
+cs = 4
+dc = 6
+reset = 5
+backlight = 7
+
