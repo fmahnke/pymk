@@ -36,7 +36,7 @@ class Subprocess:
             self.stdout_str = ''
 
     def close(self, force: bool = True) -> None:
-        return self._pexpect_spawn.close(force)
+        self._pexpect_spawn.close(force)
 
     def readline(self, size: int = -1) -> Generator[str | bytes]:
         while True:
