@@ -38,6 +38,9 @@ class Subprocess:
     def close(self, force: bool = True) -> None:
         self._pexpect_spawn.close(force)
 
+    def wait(self) -> int:
+        self._pexpect_spawn.wait()
+
     def readline(self, size: int = -1) -> Generator[str | bytes]:
         while True:
             line: str | bytes = self._pexpect_spawn.readline(size)
