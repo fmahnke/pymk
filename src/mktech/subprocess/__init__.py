@@ -39,7 +39,7 @@ class Subprocess:
         self._pexpect_spawn.close(force)
 
     def wait(self) -> int:
-        self._pexpect_spawn.wait()
+        return self._pexpect_spawn.wait()
 
     def readline(self, size: int = -1) -> Generator[str | bytes]:
         while True:
