@@ -31,7 +31,8 @@ dependencies = [
     "tomlkit>=0.13.2",
     "result>=0.17.0",
     "jsonschema>=4.23.0",
-    "pexpect>=4.9.0"
+    "pexpect>=4.9.0",
+    "click>=8.1.8"
 ]
 
 [project.urls]
