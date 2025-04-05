@@ -1,4 +1,4 @@
-from typing import Any, TypeAlias, TypeVar
+from typing import Any, NoReturn, TypeAlias, TypeVar
 
 import result
 from result import Err, Ok, is_err, is_ok
@@ -36,5 +36,5 @@ class ParseError(Exception):
     pass
 
 
-def todo(message: str = 'not implemented') -> None:
+def todo(message: str = 'not implemented') -> NoReturn:
     raise AssertionError(f'TODO: {message}')
