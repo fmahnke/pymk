@@ -25,6 +25,7 @@ __all__ = [
     'init'
 ]
 
+TRACE = 5
 
 def set_detail(level: int) -> None:
     if level < 0 or level > len(_detail_str) - 1:
