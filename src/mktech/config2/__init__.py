@@ -1,6 +1,6 @@
 from typing import Any, Tuple, Type
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from pydantic_settings import (
     BaseSettings,
     PydanticBaseSettingsSource,
@@ -8,12 +8,17 @@ from pydantic_settings import (
 )
 from pydantic_settings.sources import PathType
 
-__all__ = ['BaseModel', 'BaseConfig']
+__all__ = ['BaseModel', 'BaseConfig', 'Field']
 
 _toml_path: PathType
 
 
-class BaseConfig(BaseSettings, extra='ignore'):
+class BaseConfig(
+        BaseSettings,
+        extra='ignore',
+        env_prefix='mk_',
+        env_nested_delimiter='_',
+):
     @classmethod
     def settings_customise_sources(
         cls,
@@ -26,6 +31,8 @@ class BaseConfig(BaseSettings, extra='ignore'):
         global _toml_path
 
         return (
+            init_settings,
+            env_settings,
             TomlConfigSettingsSource(settings_cls, toml_file=_toml_path),
         )
 
