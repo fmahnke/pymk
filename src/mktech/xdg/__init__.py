@@ -1,5 +1,5 @@
-from .os import environ
-from .path import Path
+from mktech.os import environ
+from mktech.path import Path
 
 
 def xdg_cache_home() -> Path:
