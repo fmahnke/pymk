@@ -16,7 +16,10 @@ WORKDIR $source_dir
 
 COPY . .
 
-RUN pdm install
+ENV PDM_CACHE_DIR=/var/cache/pdm
+
+RUN --mount=type=cache,id=pdm-cache,target=$PDM_CACHE_DIR,sharing=locked \
+    pdm install
 
 ENV PATH="$source_dir/.venv/bin:$PATH"
 
