@@ -1,4 +1,4 @@
-FROM registry.mahnke.tech/dbox/python:2025-01.03
+FROM registry.mahnke.tech/dbox/python:2025-03.01
 
 # RUN pacman --noconfirm -Syu \
 #    package \
