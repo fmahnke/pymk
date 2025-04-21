@@ -1,20 +1,20 @@
 from typing import (
     Any,
-    TypeAlias,
     TypeVar,
 )
 
 import result
-from result import Err, Ok, as_result, is_err, is_ok
+from result import Err, Ok, Result, as_result, is_err, is_ok
 
 __all__ = ['Err', 'Ok', 'Result', 'as_result', 'is_err', 'is_ok', 'replace_ok']
 
 T = TypeVar('T')
 
-Result: TypeAlias = result.Result[T, Exception]
 
-
-def replace_ok(ctx: Result[T], ok_value: Any) -> Result[Any]:
+def replace_ok(
+    ctx: Result[T, Exception],
+    ok_value: Any,
+) -> Result[Any, Exception]:
     match ctx:
         case result.Err(e):
             assert isinstance(e, Exception)
@@ -26,7 +26,7 @@ def replace_ok(ctx: Result[T], ok_value: Any) -> Result[Any]:
             raise NotImplementedError
 
 
-def err_or_ok_none(ctx: Result[T]) -> Result[None]:
+def err_or_ok_none(ctx: Result[T, Exception]) -> Result[None, Exception]:
     match ctx:
         case result.Err(e):
             assert isinstance(e, Exception)

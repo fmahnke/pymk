@@ -64,8 +64,10 @@ class Subprocess:
                 break
 
     @property
-    def terminated_status(self) -> Result[TerminatedStatus]:
-        result: Result[TerminatedStatus]
+    def terminated_status(
+        self
+    ) -> Result[TerminatedStatus, SubprocessIsAliveError]:
+        result: Result[TerminatedStatus, SubprocessIsAliveError]
 
         if self._pexpect_spawn.isalive():
             result = Err(SubprocessIsAliveError())
@@ -91,14 +93,14 @@ class Subprocess:
         return self.stdout_str
 
     @property
-    def exit_status(self) -> Result[int]:
+    def exit_status(self) -> Result[int, SubprocessIsAliveError]:
         if self._pexpect_spawn.exitstatus is None:
             return Err(SubprocessIsAliveError())
         else:
             return Ok(self._pexpect_spawn.exitstatus)
 
     @property
-    def signal_status(self) -> Result[int]:
+    def signal_status(self) -> Result[int, SubprocessIsAliveError]:
         if self._pexpect_spawn.signalstatus is None:
             return Err(SubprocessIsAliveError())
         else:

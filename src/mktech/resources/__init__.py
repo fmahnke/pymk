@@ -4,8 +4,8 @@ from mktech.error import Err, Ok, Result
 from mktech.path import Path
 
 
-def resource_path(package: str, name: str) -> Result[Path]:
-    result: Result[Path]
+def resource_path(package: str, name: str) -> Result[Path, Exception]:
+    result: Result[Path, Exception]
 
     try:
         package_files = resources.files(package)

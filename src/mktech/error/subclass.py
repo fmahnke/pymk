@@ -71,13 +71,12 @@ class Err(result.Err[T]):
                 raise NotImplementedError
 
 
-NewResult: TypeAlias = Union[Ok[T], Err[E]]
-Result: TypeAlias = NewResult[T, Exception]
+Result: TypeAlias = Union[Ok[T], Err[E]]
 
 
 def as_result(
     *exceptions: Type[TBE],
-) -> Callable[[Callable[P, R]], Callable[P, NewResult[R, TBE]]]:
+) -> Callable[[Callable[P, R]], Callable[P, Result[R, TBE]]]:
     """
     Make a decorator to turn a function into one that returns a ``Result``.
 
@@ -89,12 +88,12 @@ def as_result(
             for exception in exceptions):
         raise TypeError("as_result() requires one or more exception types")
 
-    def decorator(f: Callable[P, R]) -> Callable[P, NewResult[R, TBE]]:
+    def decorator(f: Callable[P, R]) -> Callable[P, Result[R, TBE]]:
         """
         Decorator to turn a function into one that returns a ``Result``.
         """
         @functools.wraps(f)
-        def wrapper(*args: P.args, **kwargs: P.kwargs) -> NewResult[R, TBE]:
+        def wrapper(*args: P.args, **kwargs: P.kwargs) -> Result[R, TBE]:
             try:
                 return Ok(f(*args, **kwargs))
             except exceptions as exc:

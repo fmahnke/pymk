@@ -21,8 +21,8 @@ def _seconds_microseconds(seconds: str) -> tuple[int, int]:
 
 def parse_duration(
     duration: str | None
-) -> Result[timedelta | None]:
-    result: Result[timedelta | None]
+) -> Result[timedelta | None, ParseError]:
+    result: Result[timedelta | None, ParseError]
 
     if duration is None:
         result = Ok(None)
