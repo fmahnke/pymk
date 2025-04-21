@@ -1,6 +1,5 @@
+from mktech.error import is_err, is_ok
 from mktech.resources import resource_path
-
-from result import is_err, is_ok
 
 
 class TestResourcePath:

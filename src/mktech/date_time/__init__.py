@@ -1,9 +1,7 @@
 from datetime import datetime, timedelta
 from typing import TypeAlias
 
-from result import Result
-
-from mktech.error import Err, Ok, ParseError, todo
+from mktech.error import Err, Ok, ParseError, todo, Result
 
 Duration: TypeAlias = timedelta
 
@@ -23,8 +21,8 @@ def _seconds_microseconds(seconds: str) -> tuple[int, int]:
 
 def parse_duration(
     duration: str | None
-) -> Result[timedelta | None, ParseError]:
-    result: Result[timedelta | None, ParseError]
+) -> Result[timedelta | None]:
+    result: Result[timedelta | None]
 
     if duration is None:
         result = Ok(None)
