@@ -8,6 +8,12 @@ pipeline {
     }
 
     stages {
+        stage('Clean workspace') {
+            steps {
+                sh 'git clean -dfx'
+            }
+        }
+
         stage('Install') {
             steps {
                 sh 'pdm install'
@@ -26,4 +32,3 @@ pipeline {
         pollSCM('*/5 * * * *')
     }
 }
-
