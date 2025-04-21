@@ -1,10 +1,22 @@
 pipeline {
-    agent { dockerfile true }
+    agent {
+        docker {
+            image 'registry.mahnke.tech/dbox/python:2025-03.01'
+            args '-v pcm_cache:/var/cache/pdm -e PDM_CACHE_DIR=/var/cache/pdm'
+            reuseNode true
+        }
+    }
 
     stages {
+        stage('Install') {
+            steps {
+                sh 'pdm install'
+            }
+        }
+
         stage('Check') {
             steps {
-                sh 'nox'
+                sh 'pdm run nox'
             }
         }
     }
@@ -14,3 +26,4 @@ pipeline {
         pollSCM('*/5 * * * *')
     }
 }
+
