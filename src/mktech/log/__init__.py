@@ -12,6 +12,7 @@ from logging import (
 )
 
 from mktech.os import environ
+from mktech.path import Path
 
 __all__ = [
     'DEBUG',
@@ -36,7 +37,10 @@ def set_detail(level: int) -> None:
 
 
 def set_formatter(formatter: 'Formatter') -> None:
-    _handler.setFormatter(formatter)
+    global _root_logger
+
+    for handler in _root_logger.handlers:
+        handler.setFormatter(formatter)
 
 
 def get_level() -> int:
@@ -107,20 +111,39 @@ class Formatter(logging.Formatter):
 
 
 _formatter = Formatter()
-
-_handler = logging.StreamHandler()
 _root_logger = logging.getLogger('root')
-_root_logger.addHandler(_handler)
-
-set_formatter(_formatter)
 
 set_detail(0)
 
 
-def init(level: int | str) -> None:
-    global _formatter
-    global _handler
+def init(
+    level: int | str,
+    stream: bool = True,
+    log_file_path: Path | None = None,
+    log_file_mode: str | None = None,
+) -> None:
     global _root_logger
+
+    if stream:
+        stream_handler = logging.StreamHandler()
+
+        _root_logger.addHandler(stream_handler)
+
+        _root_logger.handlers.append(stream_handler)
+
+    if log_file_path is not None:
+        if log_file_mode is None:
+            mode = 'a'
+        else:
+            mode = log_file_mode
+
+        file_handler = logging.FileHandler(log_file_path, mode=mode)
+
+        _root_logger.addHandler(file_handler)
+
+        _root_logger.handlers.append(file_handler)
+
+    set_formatter(_formatter)
 
     env_level = environ('MK_LOG_LEVEL', required=False)
 
@@ -141,6 +164,3 @@ def init(level: int | str) -> None:
                 level = 'DEBUG'
 
     set_level(level)
-
-
-init('WARNING')
