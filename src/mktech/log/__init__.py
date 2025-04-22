@@ -29,11 +29,19 @@ __all__ = [
 TRACE = 5
 
 
-def set_detail(level: int) -> None:
+def set_detail(level: int, time: bool = False) -> None:
+    if _formatter is None:
+        raise RuntimeError('log is not initialized')
+
     if level < 0 or level > len(_detail_str) - 1:
         raise Exception()
     else:
-        _formatter.format_str(_detail_str[level])
+        detail_str = _detail_str[level]
+
+        if time:
+            detail_str = f'%(asctime)s:{detail_str}'
+
+        _formatter.format_str(detail_str)
 
 
 def set_formatter(formatter: 'Formatter') -> None:
@@ -74,8 +82,10 @@ class Formatter(logging.Formatter):
     bold_red = "\x1b[31;1m"
     reset = "\x1b[0m"
 
-    def __init__(self) -> None:
+    def __init__(self, color: bool = False) -> None:
         super().__init__()
+
+        self.color = color
 
         format_str = _detail_str[0]
 
@@ -101,19 +111,26 @@ class Formatter(logging.Formatter):
         return formatter.format(record)
 
     def _make_formatters(self, format_str: str) -> None:
-        self._formatters = [
-            logging.Formatter(self.bold_red + format_str + self.reset),
-            logging.Formatter(self.red + format_str + self.reset),
-            logging.Formatter(self.yellow + format_str + self.reset),
-            logging.Formatter(self.grey_1 + format_str + self.reset),
-            logging.Formatter(self.grey_0 + format_str + self.reset)
-        ]
+        formats = []
+
+        if self.color:
+            formats = [
+                self.bold_red + format_str + self.reset,
+                self.red + format_str + self.reset,
+                self.yellow + format_str + self.reset,
+                self.grey_1 + format_str + self.reset,
+                self.grey_0 + format_str + self.reset,
+            ]
+        else:
+            formats = [
+                format_str,
+            ] * 5
+
+        self._formatters = [logging.Formatter(it) for it in formats]
 
 
-_formatter = Formatter()
+_formatter: Formatter | None = None
 _root_logger = logging.getLogger('root')
-
-set_detail(0)
 
 
 def init(
@@ -121,15 +138,22 @@ def init(
     stream: bool = True,
     log_file_path: Path | None = None,
     log_file_mode: str | None = None,
+    color: bool = True
 ) -> None:
     global _root_logger
+    global _formatter
+
+    _formatter = Formatter(color)
+
+    handlers = _root_logger.handlers
+
+    for handler in handlers:
+        _root_logger.removeHandler(handler)
 
     if stream:
         stream_handler = logging.StreamHandler()
 
         _root_logger.addHandler(stream_handler)
-
-        _root_logger.handlers.append(stream_handler)
 
     if log_file_path is not None:
         if log_file_mode is None:
@@ -140,8 +164,6 @@ def init(
         file_handler = logging.FileHandler(log_file_path, mode=mode)
 
         _root_logger.addHandler(file_handler)
-
-        _root_logger.handlers.append(file_handler)
 
     set_formatter(_formatter)
 
