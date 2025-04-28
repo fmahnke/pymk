@@ -1,4 +1,6 @@
 from typing import Any, Tuple, Type
+import tomlkit
+from mktech.path import PathInput
 
 from pydantic import BaseModel, Field
 from pydantic_settings import (
@@ -41,3 +43,23 @@ class BaseConfig(
         _toml_path = toml_path
 
         super().__init__(*args, **kwargs)
+
+    def write(self, path: PathInput) -> None:
+        """ Write the configuration to a file. """
+
+        with open(path, 'w') as file:
+            model = _model_without_none(self.model_dump())
+
+            file.write(tomlkit.dumps(model))
+
+
+def _model_without_none(model: dict[str, Any]) -> dict[str, Any]:
+    result = {}
+
+    for k, v in model.items():
+        if isinstance(v, dict):
+            result[k] = _model_without_none(v)
+        elif v is not None:
+            result[k] = v
+
+    return result
