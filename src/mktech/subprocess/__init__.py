@@ -1,5 +1,8 @@
+# pyright: reportUnknownMemberType=false
+
+from collections.abc import Generator
 from dataclasses import dataclass
-from typing import Any, Generator
+from typing import Any
 
 import pexpect
 
@@ -9,7 +12,7 @@ from mktech.error import Err, Ok, Result, todo
 
 class SubprocessIsAliveError(Exception):
     def __init__(self) -> None:
-        self.message = 'subprocess is still alive'
+        self.message: str = 'subprocess is still alive'
         super().__init__(self.message)
 
 
@@ -24,7 +27,7 @@ class Subprocess:
     def __init__(self, command: str, *args: Any, **kwargs: Any) -> None:
         self.stdout_str: str | bytes
 
-        self._pexpect_spawn = pexpect.spawn(  # type: ignore
+        self._pexpect_spawn: pexpect.spawn = pexpect.spawn(  # type: ignore  # pyright: ignore[reportMissingTypeArgument]  # noqa: E501
             command, timeout=None, *args, **kwargs
         )
 
@@ -41,9 +44,14 @@ class Subprocess:
     def wait(self) -> int:
         return self._pexpect_spawn.wait()
 
-    def readline(self, size: int = -1) -> Generator[str | bytes]:
+    def readline(
+        self,
+        size: int = -1,
+    ) -> Generator[str | bytes, str | bytes | None]:
         while True:
-            line: str | bytes = self._pexpect_spawn.readline(size)
+            line: str | bytes = self._pexpect_spawn.readline(  # pyright: ignore[reportUnknownVariableType]  # noqa: E501
+                size
+            )
 
             if (self._pexpect_spawn.encoding is None and line != b''):
                 assert isinstance(self.stdout_str, bytes)
