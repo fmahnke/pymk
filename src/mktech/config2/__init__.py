@@ -1,7 +1,6 @@
 from typing import Any, Tuple, Type
-import tomlkit
-from mktech.path import PathInput
 
+import tomlkit
 from pydantic import BaseModel, Field
 from pydantic_settings import (
     BaseSettings,
@@ -10,9 +9,11 @@ from pydantic_settings import (
 )
 from pydantic_settings.sources import PathType
 
+from mktech.path import PathInput
+
 __all__ = ['BaseModel', 'BaseConfig', 'Field']
 
-_toml_path: PathType
+_toml_path: PathType | None
 
 
 class BaseConfig(
@@ -38,7 +39,12 @@ class BaseConfig(
             TomlConfigSettingsSource(settings_cls, toml_file=_toml_path),
         )
 
-    def __init__(self, toml_path: PathType, *args: Any, **kwargs: Any) -> None:
+    def __init__(
+        self,
+        toml_path: PathType | None = None,
+        *args: Any,
+        **kwargs: Any
+    ) -> None:
         global _toml_path
         _toml_path = toml_path
 
