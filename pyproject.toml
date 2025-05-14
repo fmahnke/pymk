@@ -33,7 +33,8 @@ dependencies = [
     "jsonschema>=4.23.0",
     "pexpect>=4.9.0",
     "click>=8.1.8",
-    "pydantic-settings>=2.8.1"
+    "pydantic-settings>=2.8.1",
+    "pydanclick[griffe]>=0.5.1"
 ]
 
 [project.urls]
