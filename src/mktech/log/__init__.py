@@ -105,6 +105,17 @@ def set_formatter(formatter: 'Formatter') -> None:
         handler.setFormatter(formatter)
 
 
+# handlers
+
+
+def set_handlers(logger: logging.Logger) -> None:
+    for handler in logger.handlers:
+        logger.removeHandler(handler)
+
+    for handler in _root_logger.handlers:
+        logger.addHandler(handler)
+
+
 # log levels
 
 
