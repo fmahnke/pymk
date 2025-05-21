@@ -19,3 +19,9 @@ nox > coverage report
 No data to report.
 nox > Command coverage report failed with exit code 1
 ```
+
+# TODO
+
+## cli
+
+- parse -v option to log level/detail settings
