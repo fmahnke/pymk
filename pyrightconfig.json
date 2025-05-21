@@ -1,0 +1,14 @@
+{
+  "include": [
+    "src",
+    "tests"
+  ],
+
+  "typeCheckingMode": "recommended",
+
+  "reportAny": false,
+  "reportExplicitAny": false,
+
+  "pythonVersion": "3.12",
+  "pythonPlatform": "Linux",
+}
