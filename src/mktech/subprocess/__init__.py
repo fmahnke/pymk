@@ -1,8 +1,10 @@
 # pyright: reportUnknownMemberType=false
 
-from collections.abc import Generator
+import subprocess
+from collections.abc import Generator, Sequence
 from dataclasses import dataclass
-from typing import Any
+from subprocess import CompletedProcess
+from typing import Any, cast
 
 import pexpect
 
@@ -113,3 +115,15 @@ class Subprocess:
             return Err(SubprocessIsAliveError())
         else:
             return Ok(self._pexpect_spawn.signalstatus)
+
+
+def run_utf8(args: Sequence[str] | str) -> CompletedProcess[str]:
+    result = run(args, encoding='utf8')
+
+    return cast(CompletedProcess[str], result)
+
+
+def run(args, encoding: str | None = None) -> CompletedProcess[str | bytes]:
+    result = subprocess.run(args, encoding=encoding)
+
+    return result
