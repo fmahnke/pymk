@@ -10,6 +10,7 @@ from logging import (
     info,
     warning,
 )
+from typing import TypeAlias
 
 from mktech.os import environ
 from mktech.path import Path
@@ -25,6 +26,8 @@ __all__ = [
     'error',
     'init'
 ]
+
+Level: TypeAlias = str | int
 
 TRACE = 5
 
