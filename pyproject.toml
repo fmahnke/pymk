@@ -34,7 +34,8 @@ dependencies = [
     "pexpect>=4.9.0",
     "click>=8.1.8",
     "pydantic-settings>=2.8.1",
-    "pydanclick[griffe]>=0.5.1"
+    "pydanclick[griffe]>=0.5.1",
+    "sarge>=0.1.7.post1"
 ]
 
 [project.urls]

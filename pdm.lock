@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:c10f028d2b176595edb7f76aa4eda612bba4deec2734a9e1fd9d40e66dfbbe13"
+content_hash = "sha256:929607a87fcd4df980634bfbe6ca9887e2e056b796069a6a9504c3c73ab6760c"
 
 [[metadata.targets]]
 requires_python = ">=3.12"
@@ -1258,6 +1258,16 @@ files = [
     {file = "rpds_py-0.22.3-pp310-pypy310_pp73-musllinux_1_2_x86_64.whl", hash = "sha256:26fd7cac7dd51011a245f29a2cc6489c4608b5a8ce8d75661bb4a1066c52dfbe"},
     {file = "rpds_py-0.22.3-pp310-pypy310_pp73-win_amd64.whl", hash = "sha256:177c7c0fce2855833819c98e43c262007f42ce86651ffbb84f37883308cb0e7d"},
     {file = "rpds_py-0.22.3.tar.gz", hash = "sha256:e32fee8ab45d3c2db6da19a5323bc3362237c8b653c70194414b892fd06a080d"},
+]
+
+[[package]]
+name = "sarge"
+version = "0.1.7.post1"
+summary = "A wrapper for subprocess which provides command pipeline functionality."
+groups = ["default"]
+files = [
+    {file = "sarge-0.1.7.post1-py2.py3-none-any.whl", hash = "sha256:6da81592eac3fdb55708baddaf28deaad3a18f8719e3c082ea3b0405647ae72c"},
+    {file = "sarge-0.1.7.post1.tar.gz", hash = "sha256:64ff42ae6ef90acbded6318ed440ed63b31a669302fb60cf41265debea282a3d"},
 ]
 
 [[package]]
