@@ -6,6 +6,8 @@
 
   "typeCheckingMode": "recommended",
 
+  "allowedUntypedLibraries": ["sarge"],
+
   "reportAny": false,
   "reportExplicitAny": false,
 

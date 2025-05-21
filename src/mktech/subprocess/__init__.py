@@ -1,15 +1,24 @@
 # pyright: reportUnknownMemberType=false
 
-import subprocess
 from collections.abc import Generator, Sequence
 from dataclasses import dataclass
-from subprocess import CompletedProcess
 from typing import Any, cast
 
 import pexpect
+import sarge
+from sarge import Capture, Pipeline
 
 from mktech import log
 from mktech.error import Err, Ok, Result, todo
+
+__all__ = [
+    'Capture',
+    'Pipeline',
+    'SubprocessIsAliveError',
+    'TerminatedStatus',
+    'Subprocess',
+    'run',
+]
 
 
 class SubprocessIsAliveError(Exception):
@@ -117,13 +126,17 @@ class Subprocess:
             return Ok(self._pexpect_spawn.signalstatus)
 
 
-def run_utf8(args: Sequence[str] | str) -> CompletedProcess[str]:
-    result = run(args, encoding='utf8')
+def pipeline_exit_code(self: sarge.Pipeline) -> int:
+    result = cast(int, self.returncode)
 
-    return cast(CompletedProcess[str], result)
-
-
-def run(args, encoding: str | None = None) -> CompletedProcess[str | bytes]:
-    result = subprocess.run(args, encoding=encoding)
+    assert result is not None
 
     return result
+
+
+setattr(sarge.Pipeline, 'exit_code', property(fget=pipeline_exit_code))
+
+
+@log.log_args(level=log.DEBUG)
+def run(command: Sequence[str] | str, **kwargs: Any) -> Pipeline:
+    return sarge.run(command, **kwargs)
